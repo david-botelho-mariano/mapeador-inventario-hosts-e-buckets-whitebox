@@ -1,5 +1,3 @@
-
-
 # Azure - buckets
 
 `az storage account list --output table | awk '{print $2}' | xargs -I {} az storage container list --account-name {} --output table`
@@ -15,7 +13,6 @@
 aws s3api list-buckets --profile mfa
 ```
 
-```
 
 # AWS - hosts
 
@@ -36,6 +33,7 @@ done
 ```
 
 # GCP - buckets
+
 ```
 for projeto in $(gcloud projects list --format="value(projectId)"); do echo "Projeto: $projeto"; gcloud config set project $projeto --quiet && gsutil ls -p $projeto | awk -F/ '{print $3}'; done
 ```
@@ -43,12 +41,5 @@ for projeto in $(gcloud projects list --format="value(projectId)"); do echo "Pro
 # GCP - hosts
 
 ```
-for project in $(gcloud projects list --format="value(projectId)"); do gcloud compute instances list --project $project --filter="status=RUNNING" --format="csv[no-heading](name, networkInterfaces[0].accessConfigs[0].natIP)" >> external_ips.txt; done
-```
-
-```
-gcloud compute instances list --filter="status=RUNNING" --format="json" | jq -r '.[].networkInterfaces[].accessConfigs[].assignedIp' > external_ips.txt
-```
-
-```
 for project in $(gcloud projects list --format="value(projectId)"); do gcloud compute instances list --project $project --format="value(networkInterfaces[0].accessConfigs[0].natIP)" | sed "s/^/$project /" >> external_ips.txt; done
+```
