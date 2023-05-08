@@ -1,4 +1,4 @@
-# 
+# Mapeador de inventario de hosts e buckets whitebox
 Scripts criados para automatizar o processo de criação do inventario digital (lista de subdominios e buckets) para estar de acordo com compliance e ter maior controle dos assests.
 
 # Azure - buckets
