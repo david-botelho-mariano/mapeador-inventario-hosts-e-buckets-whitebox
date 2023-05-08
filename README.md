@@ -41,5 +41,5 @@ for projeto in $(gcloud projects list --format="value(projectId)"); do echo "Pro
 # GCP - subdomínios
 
 ```
-for project in $(gcloud projects list --format="value(projectId)"); do gcloud compute instances list --project $project --format="value(networkInterfaces[0].accessConfigs[0].natIP)" | sed "s/^/$project /" >> external_ips.txt; done
+for project in $(gcloud projects list --format="value(projectId)"); do api_status=$(gcloud services list --enabled --project $project --filter="config.name:compute.googleapis.com" --format="value(config.name)"); if [[ $api_status == "compute.googleapis.com" ]]; then gcloud compute instances list --project $project --filter="status=RUNNING" --format="csv[no-heading](name, networkInterfaces[0].accessConfigs[0].natIP)" >> external_ips_4.txt; fi; done
 ```
