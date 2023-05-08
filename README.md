@@ -1,3 +1,6 @@
+# 
+Scripts criados para automatizar o processo de criação do inventario digital (lista de subdominios e buckets) para estar de acordo com compliance e ter maior controle dos assests.
+
 # Azure - buckets
 
 `az storage account list --output table | awk '{print $2}' | xargs -I {} az storage container list --account-name {} --output table`
