@@ -2,7 +2,7 @@
 
 `az storage account list --output table | awk '{print $2}' | xargs -I {} az storage container list --account-name {} --output table`
 
-# Azure - subdominios 
+# Azure - subdomínios 
 
 `az webapp list --query "[].{name:name, hostNames:hostNames}" -o table`
 
@@ -14,7 +14,7 @@ aws s3api list-buckets --profile mfa
 ```
 
 
-# AWS - hosts
+# AWS - subdomínios
 
 ```
 #!/bin/bash
@@ -38,7 +38,7 @@ done
 for projeto in $(gcloud projects list --format="value(projectId)"); do echo "Projeto: $projeto"; gcloud config set project $projeto --quiet && gsutil ls -p $projeto | awk -F/ '{print $3}'; done
 ```
 
-# GCP - hosts
+# GCP - subdomínios
 
 ```
 for project in $(gcloud projects list --format="value(projectId)"); do gcloud compute instances list --project $project --format="value(networkInterfaces[0].accessConfigs[0].natIP)" | sed "s/^/$project /" >> external_ips.txt; done
