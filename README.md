@@ -1,6 +1,6 @@
 
 
-# Buckets Azure
+# Azure - buckets
 
 `az storage account list --output table | awk '{print $2}' | xargs -I {} az storage container list --account-name {} --output table`
 
